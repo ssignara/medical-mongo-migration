@@ -1,0 +1,48 @@
+
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: medical-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: medical_db
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  migration:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.migration
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      MONGO_DB: medical_db
+      MONGO_USER: root
+      MONGO_PASSWORD: rootpassword
+    volumes:
+      - ./data:/app/data
+    command: ["python", "migration.py"]
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://root:rootpassword@mongodb:27017/medical_db?authSource=admin
+
+    ports:
+      - "8000:8000"
+
+volumes:
+  mongo_data:
+
