@@ -1,0 +1,33 @@
+# --- ENVIRONNEMENT ET SECRETS ---
+.env
+
+# --- CACHE PYTHON ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- FICHIERS DE LOGS ---
+logs/
+*.log
+
+# --- CONFIG TEMPORAIRES ---
+*.tmp
+*.swp
+
+# --- BUILD DOCKER ---
+docker-data/
+mongo_data/
+*.tar
+
+# --- VENV LOCAL ---
+venv/
+.env/
+.venv/
+
+# --- JUPYTER ---
+.ipynb_checkpoints/
+
+# --- SYSTEME ---
+.DS_Store
+Thumbs.db

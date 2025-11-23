@@ -1,0 +1,55 @@
+2025-11-21 22:40:07,372 [INFO] Utilisation de l'URI MongoDB fournie en argument.
+2025-11-21 22:40:07,372 [INFO] === DÉBUT DE LA MIGRATION CSV -> MongoDB ===
+2025-11-21 22:40:07,372 [INFO] CSV       : data/healthcare_dataset.csv
+2025-11-21 22:40:07,372 [INFO] Mongo URI : mongodb://root:rootpassword@localhost:27017/?authSource=admin
+2025-11-21 22:40:07,372 [INFO] Base      : medical_db
+2025-11-21 22:40:07,372 [INFO] Collection: patients
+2025-11-21 22:40:07,465 [INFO] CSV chargé avec succès : 55500 lignes (hors entête).
+2025-11-21 22:40:07,492 [ERROR] Erreur de connexion MongoDB : Authentication failed., full error: {'ok': 0.0, 'errmsg': 'Authentication failed.', 'code': 18, 'codeName': 'AuthenticationFailed'}
+2025-11-23 01:39:07,293 [INFO] Utilisation de l'URI MongoDB fournie en argument.
+2025-11-23 01:39:07,294 [INFO] === DÉBUT DE LA MIGRATION CSV -> MongoDB ===
+2025-11-23 01:39:07,294 [INFO] CSV       : data/healthcare_dataset.csv
+2025-11-23 01:39:07,294 [INFO] Mongo URI : mongodb://root:rootpassword@localhost:27017/?authSource=admin
+2025-11-23 01:39:07,294 [INFO] Base      : medical_db
+2025-11-23 01:39:07,294 [INFO] Collection: patients
+2025-11-23 01:39:07,406 [INFO] CSV chargé avec succès : 55500 lignes (hors entête).
+2025-11-23 01:39:07,438 [ERROR] Erreur de connexion MongoDB : Authentication failed., full error: {'ok': 0.0, 'errmsg': 'Authentication failed.', 'code': 18, 'codeName': 'AuthenticationFailed'}
+2025-11-23 01:54:42,556 [INFO] Utilisation de l'URI MongoDB fournie en argument.
+2025-11-23 01:54:42,556 [INFO] === DÉBUT DE LA MIGRATION CSV -> MongoDB ===
+2025-11-23 01:54:42,556 [INFO] CSV       : data/healthcare_dataset.csv
+2025-11-23 01:54:42,557 [INFO] Mongo URI : mongodb://root:rootpassword@localhost:27018/?authSource=admin
+2025-11-23 01:54:42,557 [INFO] Base      : medical_db
+2025-11-23 01:54:42,557 [INFO] Collection: patients
+2025-11-23 01:54:42,673 [INFO] CSV chargé avec succès : 55500 lignes (hors entête).
+2025-11-23 01:54:42,710 [INFO] Connexion réussie à MongoDB, base 'medical_db', collection 'patients'.
+2025-11-23 01:54:42,711 [INFO] Collection supprimée avant nouvel import (drop).
+2025-11-23 01:54:43,590 [INFO] 55500 documents insérés dans MongoDB.
+2025-11-23 01:54:43,608 [INFO] Documents présents dans la base : 55500
+2025-11-23 01:54:43,608 [INFO] ✅ Vérification OK : le nombre de documents correspond au nombre de lignes du CSV.
+2025-11-23 01:54:43,608 [INFO] === MIGRATION TERMINÉE AVEC SUCCÈS ===
+2025-11-23 02:14:32,506 [INFO] Utilisation de l'URI MongoDB fournie en argument.
+2025-11-23 02:14:32,507 [INFO] === DÉBUT DE LA MIGRATION CSV -> MongoDB ===
+2025-11-23 02:14:32,507 [INFO] CSV       : data/healthcare_dataset.csv
+2025-11-23 02:14:32,507 [INFO] Mongo URI : mongodb://root:rootpassword@localhost:27018/?authSource=admin
+2025-11-23 02:14:32,507 [INFO] Base      : medical_db
+2025-11-23 02:14:32,507 [INFO] Collection: patients
+2025-11-23 02:14:32,609 [INFO] CSV chargé avec succès : 55500 lignes (hors entête).
+2025-11-23 02:14:32,639 [INFO] Connexion réussie à MongoDB, base 'medical_db', collection 'patients'.
+2025-11-23 02:14:32,641 [INFO] Collection supprimée avant nouvel import (drop).
+2025-11-23 02:14:33,508 [INFO] 55500 documents insérés dans MongoDB.
+2025-11-23 02:14:33,525 [INFO] Documents présents dans la base : 55500
+2025-11-23 02:14:33,525 [INFO] ✅ Vérification OK : le nombre de documents correspond au nombre de lignes du CSV.
+2025-11-23 02:14:33,525 [INFO] === MIGRATION TERMINÉE AVEC SUCCÈS ===
+2025-11-23 15:14:54,360 [INFO] Utilisation de l'URI MongoDB fournie en argument.
+2025-11-23 15:14:54,360 [INFO] === DÉBUT DE LA MIGRATION CSV -> MongoDB ===
+2025-11-23 15:14:54,360 [INFO] CSV       : data/healthcare_dataset.csv
+2025-11-23 15:14:54,360 [INFO] Mongo URI : mongodb://root:rootpassword@localhost:27018/?authSource=admin
+2025-11-23 15:14:54,360 [INFO] Base      : medical_db
+2025-11-23 15:14:54,360 [INFO] Collection: patients
+2025-11-23 15:14:54,460 [INFO] CSV chargé avec succès : 55500 lignes (hors entête).
+2025-11-23 15:14:54,486 [INFO] Connexion réussie à MongoDB, base 'medical_db', collection 'patients'.
+2025-11-23 15:14:54,489 [INFO] Collection supprimée avant nouvel import (drop).
+2025-11-23 15:14:55,324 [INFO] 55500 documents insérés dans MongoDB.
+2025-11-23 15:14:55,341 [INFO] Documents présents dans la base : 55500
+2025-11-23 15:14:55,342 [INFO] ✅ Vérification OK : le nombre de documents correspond au nombre de lignes du CSV.
+2025-11-23 15:14:55,342 [INFO] === MIGRATION TERMINÉE AVEC SUCCÈS ===
