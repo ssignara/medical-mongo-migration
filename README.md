@@ -188,7 +188,56 @@ MONGO_USER	Nom d’utilisateur
 MONGO_PASSWORD	Mot de passe
 MONGO_DB	Nom de la base
 MONGO_COLLECTION	Nom de la collection
-✔️ 6. Ce que garantit ce script
+
+🔐 6. Architecture de Sécurité – Gestion des Rôles MongoDB
+
+Afin de garantir la sécurité et la bonne gouvernance des données de santé, trois rôles ont été définis autour de la base MongoDB.
+Chaque rôle possède un niveau d’accès strictement limité selon le principe du moindre privilège.
+
+👑 a) Administrateur — admin
+
+Objectif : Gestion complète de la base de données
+Permissions principales :
+
+Accès total à toutes les bases
+
+Création, suppression et modification des utilisateurs
+
+Configuration générale de MongoDB
+
+Gestion des rôles et permissions
+
+Sauvegardes et restauration (backups)
+
+👉 Utilisé exclusivement pour l'administration système, jamais pour exécuter la migration ou l’application.
+
+🛠 b) Application métier — healthcare_app
+
+Objectif : Accès opérationnel pour l’application Healthcare
+Permissions principales :
+
+Lecture / écriture sur la base medical_db
+
+Gestion des données patients
+
+Opérations CRUD complètes sur la collection patients
+
+👉 Ce rôle n’a aucun accès administratif, seulement ce qui est nécessaire au fonctionnement de l’API.
+
+📊 c) Analyste — healthcare_analyst
+
+Objectif : Consultation et analyse
+Permissions principales :
+
+Lecture seule sur la base
+
+Exécution de requêtes analytiques
+
+Génération de rapports
+
+👉 Ce rôle garantit qu’un analyste ne peut jamais modifier les données.
+
+✔️ 7. Ce que garantit ce script
 Fonctionnalité	Description
 Automatisation	Import complet sans intervention
 Robustesse	Gestion d’erreurs et vérifications
