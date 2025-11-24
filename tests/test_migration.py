@@ -14,7 +14,6 @@ if str(SRC_MIGRATION_DIR) not in sys.path:
     
 import migration
 
-
 # ==============================
 #   TESTS SUR build_mongo_uri
 # ==============================
