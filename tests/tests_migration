@@ -1,0 +1,84 @@
+import pathlib
+import importlib.util
+import os
+import sys
+import pytest
+import pandas as pd
+
+
+# === Chargement dynamique du module src/migration/migration.py ===
+
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[1]
+MIGRATION_PATH = PROJECT_ROOT / "src" / "migration" / "migration.py"
+
+
+def load_migration_module():
+    """
+    Charge le fichier migration.py comme un module Python classique,
+    sans avoir besoin que 'src' ou 'migration' soient des packages installés.
+    """
+    spec = importlib.util.spec_from_file_location("migration", MIGRATION_PATH)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None  # sécurité pour les analyseurs statiques
+    spec.loader.exec_module(module)
+    return module
+
+
+migration = load_migration_module()
+
+
+# === Tests unitaires de build_mongo_uri ===
+
+
+def test_build_mongo_uri_prefers_cli(monkeypatch):
+    """Si une URI est fournie en CLI, elle doit être utilisée en priorité."""
+    monkeypatch.setenv("MONGO_URI", "mongodb://env:27017")
+    cli_uri = "mongodb://cli:27017"
+
+    result = migration.build_mongo_uri(cli_uri)
+
+    assert result == cli_uri
+
+
+def test_build_mongo_uri_uses_env_when_no_cli(monkeypatch):
+    """Sans URI CLI, la fonction doit retourner MONGO_URI si elle est définie."""
+    env_uri = "mongodb://env-host:27018/?authSource=admin"
+    monkeypatch.setenv("MONGO_URI", env_uri)
+
+    result = migration.build_mongo_uri(None)
+
+    assert result == env_uri
+
+
+def test_build_mongo_uri_builds_from_parts(monkeypatch):
+    """
+    Sans CLI ni MONGO_URI, l'URI est construite à partir des variables MONGO_*.
+    Cela correspond exactement à la logique de ton script actuel.
+    """
+    # On s'assure qu'on ne tombe pas sur MONGO_URI
+    monkeypatch.delenv("MONGO_URI", raising=False)
+
+    monkeypatch.setenv("MONGO_HOST", "custom-host")
+    monkeypatch.setenv("MONGO_PORT", "27018")
+    monkeypatch.setenv("MONGO_USER", "user1")
+    monkeypatch.setenv("MONGO_PASSWORD", "pass1")
+    monkeypatch.setenv("MONGO_AUTH_DB", "admin")
+
+    result = migration.build_mongo_uri(None)
+
+    assert result == "mongodb://user1:pass1@custom-host:27018/?authSource=admin"
+
+
+def test_build_mongo_uri_default_host_and_port(monkeypatch):
+    """Sans aucune variable d'environnement, on retombe sur l'URI par défaut."""
+    for var in [
+        "MONGO_URI",
+        "MONGO_HOST",
+        "MONGO_PORT",
+        "MONGO_USER",
+        "MONGO_PASSWORD",
+        "MONGO_AUTH_DB",
+    ]:
+        monkeypatch.delenv(var, raising=False)
+
+    result = migration.build_mongo_uri(None)
